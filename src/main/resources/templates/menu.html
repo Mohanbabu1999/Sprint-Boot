@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Menu</title>
+    <link rel="stylesheet" href="/menu-style.css">
+    <script src="/script.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Our Delicious Menu</h1>
+    </header>
+    
+    <div class="menu-container">
+        <div class="food-item" th:each="item : ${foodItems}">
+            <img th:src="${item.image}" alt="Food Item" class="food-image">
+            <div class="food-details">
+                <h3 th:text="${item.name}"></h3>
+                <p th:text="${item.description}"></p>
+                <span class="price" th:text="'$' + ${#numbers.formatDecimal(item.price, 1, 2)}"></span>
+                
+                <select class="quantity-select">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+                
+                <button class="order-btn">Order Now</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
